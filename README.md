@@ -10,11 +10,17 @@ python 3
 django framework
 
 ## Executing program
+### To execute the webapp:
+
 Clone the repository to your computer. After that please go to app_python/mysite.
 
 Now inside this directory run ```python3 manage.py startproject```
 
 Then open your browser and visit http://127.0.0.1:8000/
+
+### To find out the best practices:
+
+Please go to app_python/mysite and find there python.md file.
 
 ## Author
 Anastassiya Ryabkova
