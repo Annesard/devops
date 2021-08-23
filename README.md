@@ -22,6 +22,15 @@ Then open your browser and visit http://127.0.0.1:8000/
 
 Please go to app_python/mysite and find there python.md file.
 
+## Docker
+My repository name on docker hub is anessard/lab1
+
+In order to run the image please use following command:
+
+```docker run -it -p 8020:8020 anessard/lab1```
+
+Then visit: http://127.0.0.1:8020/
+
 ## Author
 Anastassiya Ryabkova
 
