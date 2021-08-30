@@ -6,14 +6,23 @@ from django.shortcuts import render
 import pytz
 
 
-def index(request):
+def get_time():
     """
-    Method index is design to get the current time in Moscow, Russia
+    Method index is design to get the time in Moscow
     """
     # get the Moscow current date and time
     timezone = pytz.timezone('Europe/Moscow')
     time_now = datetime.now(timezone)
 
+    return time_now
+
+
+def index(request):
+    """
+    Method index is design to render all the data into template
+    """
+
+    time_now = get_time()
     # store only time without milliseconds
     moscow_time = {
         'hour': time_now.hour,
