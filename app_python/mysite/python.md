@@ -35,3 +35,21 @@ Here will be listed several of such practices:
 
 
 Reference:https://data-flair.training/blogs/python-best-practices/
+
+
+## Unit test best practices 
+
+Below several unit test practices are listed:
+* Adopt well organaised test structure: like mutation testing, test-driven development, or behavior-driven programming
+* Name the test well: save your test with the strategy being tested, save your test given the name of the environment under which it’s being tested, save your test with the proposed behavior when the scenario is requested
+* Write relaible and trustworthy unit tests
+* Make automated unit tests
+* Focus on single use case at a time
+* Minimal assertation per test
+* Unit test should be isolated
+* Trust unit, not integration: a unit test and the system under test must abstain from external factors.
+* Aim for 100% test case coverage
+* Start using headless testing in the cloud: headless testing takes advantage of lightweight container instances in the cloud that allows you to write tests quickly and avail rapid feedback almost in real-time
+
+Reference: https://www.partech.nl/nl/publicaties/2020/03/10-unit-testing-best-practices
+
