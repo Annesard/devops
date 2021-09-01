@@ -1,4 +1,4 @@
-# DevOps Course Lab 1
+# DevOps Course Labs
 
 ## Description
 This project intend to provide information about the best python practices on the practical example of the web application. The webapp is used to get the current time in Moscow, Russia
