@@ -15,7 +15,7 @@ pipeline {
         stage('Test') {
           
             steps {
-              echo "Doing test"
+              echo 'Doing test'
               sh python manage.py test
             }
         }
