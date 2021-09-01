@@ -20,7 +20,7 @@ Then open your browser and visit http://127.0.0.1:8000/
 
 ### To find out the best practices:
 
-Please go to app_python/mysite and find there python.md file.
+Please go to app_python/mysite and find there python.md file, docker.md and CI.md
 
 ## Docker
 My repository name on docker hub is anessard/lab1
