@@ -1,36 +1,21 @@
 pipeline {
-    agent { 
-        docker { 
-            image 'python:3.9-alpine3.14' 
-            args '-v /var/run/docker.sock:/var/run/docker.sock -u 0 --network host'
-        } 
-    }
+  
+    agent any
 
     stages {
-        stage('Checkout') {
+      
+        stage('Build') {
+          
             steps {
-                checkout scm
+              sh pip install -r ./requirements.txt
+              sh python manage.py runserver
             }
         }
-
-        stage('Requirements') {
-            steps {
-                echo 'Installing requirements...'
-                sh 'pip3 install -r app_python/requirements.txt'
-            }
-        }
-
-        stage('List entries') {
-            steps {
-                sh 'ls'
-            }
-        }
-
+      
         stage('Test') {
+          
             steps {
-                echo 'Testing... '
-                sh 'cd app_python/mysite/'
-                sh 'python manage.py test'
+              sh python manage.py test
             }
         }
     }
