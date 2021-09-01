@@ -1,7 +1,9 @@
 # DevOps Course Labs
 
+[![CI to Docker Hub](https://github.com/Annesard/devops/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/Annesard/devops/actions/workflows/main.yml)
+
 ## Description
-This project intend to provide information about the best python practices on the practical example of the web application. The webapp is used to get the current time in Moscow, Russia
+This project intend to provide information about the best practices on the practical example of the web application. The webapp is used to get the current time in Moscow, Russia
 
 ## Getting Started
 ### Dependencies
