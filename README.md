@@ -37,6 +37,8 @@ There is a unit test that ensures corectness of the time displayed
 
 It is located app_python/my_site/time2/tests.py
 
+Please go to app_python/mysite.
+
 To run it, execute the following comand:
 ```python3 manage.py test```
 
