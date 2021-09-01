@@ -28,7 +28,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                echo 'Testing...'
+                echo 'Testing... '
                 sh 'cd app_python/mysite/'
                 sh 'python manage.py test'
             }
