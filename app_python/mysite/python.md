@@ -55,4 +55,7 @@ Reference: https://www.partech.nl/nl/publicaties/2020/03/10-unit-testing-best-pr
 
 ## My unit test description
 
-I provided the unit test that insures that the time shown on the website is correct. It checks that these times are equal
+I provided the unit test that insures that the time shown on the website is correct. It checks that these times are equal to each other.
+
+The test could be find in the /app_python/mysite/time2/tests.py
+
