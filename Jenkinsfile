@@ -29,7 +29,8 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing...'
-                sh 'cd app_python/mysite/' &&'python3 manage.py test'
+                sh 'cd app_python/mysite/'
+                sh 'python3 manage.py test'
             }
         }
     }
