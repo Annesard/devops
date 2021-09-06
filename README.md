@@ -48,7 +48,7 @@ To run it, execute the following comand:
 
 In order to run the playbook please cd to ansible then run
 
-'''ansible-playbook -i inventory/aws_ec2.yaml  playbooks/playbook.yaml -u admin -vvv'''
+'''ansible-playbook -i inventory/aws_ec2.yaml  playbooks/playbook.yaml -u ubuntu -vvv'''
 
 ## Author
 Anastassiya Ryabkova
