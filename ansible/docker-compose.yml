@@ -1,0 +1,7 @@
+version: '2.2'
+
+services:
+  app_python:
+    image: anessard/lab1:latest
+    ports:
+      - 8020:8020

@@ -1,0 +1,29 @@
+---
+# tasks file for docker-compose
+# Docker compose
+- name: Install python3-pip package
+  apt:
+    name: python3-pip
+    state: present
+    update_cache: yes
+
+- name: Install Docker Module for Python
+  pip:
+    name: docker-compose
+    state: present
+
+- name: Creates directory
+  file:
+    path: /opt/*
+    state: directory
+
+- name: Copy docker-compose.yml file on the VM
+  copy:
+    src: ~/Documents/Study/4thyear/devops/lab1/devops/ansible/docker-compose.yml
+    dest: /opt/
+
+- name: Run `docker-compose up` again
+  docker_compose:
+    project_src: /opt/
+    build: yes
+  register: output
