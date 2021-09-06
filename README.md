@@ -44,6 +44,12 @@ Please go to app_python/mysite.
 To run it, execute the following comand:
 ```python3 manage.py test```
 
+## Ansible
+
+In order to run the playbook please cd to ansible then run
+
+'''ansible-playbook -i inventory/aws_ec2.yaml  playbooks/playbook.yaml -u admin -vvv'''
+
 ## Author
 Anastassiya Ryabkova
 
