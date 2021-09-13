@@ -37,3 +37,12 @@ Reference:
 Success image:
 
 ![grafana.jpg](Logging%20best%20precatices%20a78a55cd1b5642ce8f0e8cc9d2e3b126/grafana.jpg)
+
+Lab 8 result of http://localhost:9090/targets:
+![targets.png](targets.png)
+
+Lab 8 result add 13407 dashboard:
+![dashboard1.png](dashboard1.png)
+
+Lab 8 result add 3662 dashboard:
+![dashboard2.png](dashboard2.png)
