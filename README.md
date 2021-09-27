@@ -59,4 +59,7 @@ Innopolis University
 
 a.ryabkova@innopolis.university
 
-## Acknowledgments
+## Lab 12
+
+my app "/" show current time
+"/visits" show visitor
