@@ -81,3 +81,6 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+username: admin
+password: 1f2d1e2e67df
