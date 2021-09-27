@@ -1,3 +1,4 @@
+apiVersion: v1
 # Default values for myapp.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
@@ -8,6 +9,8 @@ image:
   repository: anessard/lab1
   pullPolicy: Always
   tag: latest
+  port: 8020
+  workDir: /opt/app/files
   # Overrides the image tag whose default is the chart appVersion.
 
 
@@ -57,7 +60,7 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
-resources: {}
+resources:
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following

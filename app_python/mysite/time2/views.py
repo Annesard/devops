@@ -1,9 +1,11 @@
 """
 This module is providing the functionality for the webpage that displays time in Moscow
 """
+
 from datetime import datetime
 from django.shortcuts import render
 import pytz
+import ast
 
 
 def get_time():
@@ -31,5 +33,18 @@ def index(request):
 
     # to pas the time for rendering
     context = {'moscow_time': moscow_time}
+    with open('time.txt', 'a') as f:
+        data = str(context) + "\n"
+        f.write(data)
 
     return render(request, 'time2/website.html', context)
+
+def details(request):
+    context = {}
+    with open('time.txt', 'r') as f:
+        data: str = f.read()
+
+    context = {'data': data}
+    print(context.get('data'))
+
+    return render(request, 'time2/visits.html', context)

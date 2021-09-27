@@ -1,0 +1,6 @@
+piVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-config
+data:
+  config.json: {{ .Files.Get "files/config.json" | quote }}
