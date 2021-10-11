@@ -1,0 +1,99 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "myapp.fullname" . }}
+  labels:
+    {{- include "myapp.selectorLabels" . | nindent 4 }}
+spec:
+  serviceName: {{ .Values.service.name }}
+  podManagementPolicy: {{ .Values.statefulSet.podManagementPolicy }}
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "myapp.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "myapp.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "myapp.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+        - name: wget
+          image: busybox
+          command:
+            - wget
+            - "-O"
+            - "/wget/wget-index.html"
+            - http://info.cern.ch
+          volumeMounts:
+            - name: wget
+              mountPath: "/wget"
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: MY_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key:  username
+                  name: mysecret
+            - name: MY_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key:  password
+                  name: mysecret
+          ports:
+            - name: http
+              containerPort: 8020
+              protocol: TCP
+          # livenessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: http
+          # readinessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: visits
+              mountPath: {{ .Values.volumes.visits }}
+            - name: wget
+              mountPath: {{ .Values.volumes.wget }}
+      dnsPolicy: Default
+      volumes:
+        - name: wget
+          emptyDir: {}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+  volumeClaimTemplates:
+    - metadata:
+        name: visits
+      spec:
+        {{- toYaml .Values.statefulSet.volumeClaimTemplates.spec | nindent 10 }}
