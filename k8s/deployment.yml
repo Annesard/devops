@@ -1,21 +1,54 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: PersistentVolume
 metadata:
-  name: myapp-deployment
-  labels:
-    app: myapp
+  name: python-stateful-volume
 spec:
-  replicas: 3
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 4Gi
+  hostPath:
+    path: /data/location
+
+---
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: python-stateful
+  labels:
+    name: python-stateful
+spec:
+  # https://github.com/kubernetes/kubernetes/issues/69608
+  serviceName: mychart
+  replicas: 2
   selector:
     matchLabels:
-      app: myapp
+      name: python-stateful
+  volumeClaimTemplates:
+    - metadata:
+        name: python-stateful-volume-claim
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        volumeMode: Filesystem
+        resources:
+          requests:
+            storage: 1Gi
   template:
     metadata:
+      name: python-stateful
       labels:
-        app: myapp
+        name: python-stateful
     spec:
       containers:
-      - name: myapp
-        image: anessard/lab1:latest
-        ports:
-        - containerPort: 8020
+        - name: python-stateful
+          image: anessard/lab1
+#          env:
+#            - name: POD_NAME
+#              valueFrom:
+#                fieldRef:
+#                  fieldPath: metadata.name
+          volumeMounts:
+            - mountPath: /app/data
+              name: python-stateful-volume-claim
